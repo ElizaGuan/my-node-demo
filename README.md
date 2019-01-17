@@ -10,3 +10,82 @@
 
 2. 将本地仓库与远程仓库建立py关系
   git remote add origin xxxx
+
+
+# 添加
+
+- save
+- insertOne
+- insertMany
+
+db.users.save({ name: '张三', age: 19 })
+db.users.insertOne({ name: '李四', age: 20 })
+db.users.insertMany(
+  [
+    {
+      name: '王五'
+    },
+    {
+      name: '马六'
+    }
+  ]
+)
+
+# 删除
+
+- remove
+- deleteOne
+- deleteMany
+
+db.users.remove({name: '张三'}, {justOne: true})
+
+# 修改
+
+- save      如果传入了 _id ，那么 save 会变成 修改
+- update
+- updateOne
+- updateMany
+
+db.users.save(
+  { 
+    _id: ObjectId("5c3fe3bb04f06e2406fe7cff"), 
+    name: '李四',
+    age: 50
+  }
+)
+
+db.users.update(
+  {
+    name: '赵⑦'
+  },
+
+  {
+    $set: {
+      age: 200
+    }
+  },
+
+  {
+    upsert: true,
+    multi: true
+  }
+)
+
+
+# 分页
+
+总条数 （totalSize） 11 数据
+
+每页显示 (pageSize) 5条
+
+当前第几页 (pageNum) 
+
+一共多少页 (totalPage)        Math.ceil(totalSize / pageSize);
+
+1 db.films.find().skip(0).limit(5)
+
+2 db.films.find().skip(5).limit(5)
+
+3 db.films.find().skip(10).limit(5)
+
+公式： db.films.find().skip( (pageNum - 1) * pageSize ).limit(pageSize)
