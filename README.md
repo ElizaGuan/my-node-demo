@@ -1,3 +1,12 @@
+# nodejs 操作 mongodb
+
+- 第三方模块来做支持
+  - mongodb
+  - mongoose
+  - xxxxx
+
+
+
 我的天，李威真帅
 
 使用 ssh 的方式去连接远程仓库
